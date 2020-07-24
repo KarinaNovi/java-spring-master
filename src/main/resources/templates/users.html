@@ -67,14 +67,14 @@
                 <td> <form
                        th:action="@{/deleteUser}" th:object="${user}" method="get">
                     <input type="submit" value="Delete"/> </form> </td>
-            </tr>
+                </tr>
             <tr> <form th:action="@{/users}" th:object="${user}" method="post">
-                <input type="submit" value="Add"/> </form>
+                <input type="submit" value="Add"/>
                 <td ${user.id}></td>
                 <td> <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"></td>
                 <td> <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"></td>
                 <td> <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Phone Number"></td>
-                <td> <input type="text" th:field="*{email}" id="email" placeholder="Email"></td>
+                <td> <input type="text" th:field="*{email}" id="email" placeholder="Email"></td> </form>
             </tr>
         </table>
     </div>
