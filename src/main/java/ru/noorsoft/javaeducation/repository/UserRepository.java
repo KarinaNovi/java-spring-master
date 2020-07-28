@@ -8,5 +8,6 @@ import ru.noorsoft.javaeducation.model.User;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
+    void deleteById(Long id);
 
 }

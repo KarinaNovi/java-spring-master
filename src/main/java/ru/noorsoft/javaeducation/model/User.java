@@ -29,6 +29,16 @@ public class User {
     @Column(name = "Email")
     private String email;
 
+    protected User(){
+
+    }
+    public User(String firstName, String lastName, String phoneNumber, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
+
 
     public Long getId() {
         return id;

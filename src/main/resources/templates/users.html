@@ -36,15 +36,21 @@
             color: #333;
             background-color: #f0f0f0;
         }
-
-        .tg .tg-4eph {
-            background-color: #f9f9f9
-        }
     </style>
 </head>
 <body>
-        <h2>Users</h2>
+        <h1>Users</h1>
+        <div>
+        <br/><br/>
         <table class="tg">
+            <tr> <form action="#" th:action="@{/}" th:object="${addUser}" method="POST">
+                <input type="submit" value="Add"/>
+                <td></td>
+                <td> <input type="text" th:field="*{firstName}" title="Use letters" pattern="^[a-zA-Zа-яА-Я]+$"></td>
+                <td> <input type="text" th:field="*{lastName}"  title="Use letters" pattern="^[a-zA-Zа-яА-Я]+$"></td>
+                <td> <input type="tel" th:field="*{phoneNumber}" title="Use numbers" pattern="^[0-9]+$" minlength="11"></td>
+                <td> <input type="email" th:field="*{email}" ></td> </form>
+            </tr>
             <tr>
                 <th width="80">ID</th>
                 <th width="120">First Name</th>
@@ -54,30 +60,18 @@
                 <th width="60">Edit</th>
                 <th width="60">Delete</th>
             </tr>
-            <tr  th:each ="user : ${users}">
+            <tr  th:each ="user : ${user}">
                     <td ${user.id}></td>
-                    <td th:utext="${firstName}"></td>
-                    <td th:utext="${lastName}"></td>
-                    <td th:utext="${phoneNumber}"></td>
-                    <td th:utext="${email}"></td>
+                    <td th:utext="${user.firstName}"></td>
+                    <td th:utext="${user.lastName}"></td>
+                    <td th:utext="${user.phoneNumber}"></td>
+                    <td th:utext="${user.email}"></td>
 
-                <td> <form
-                       th:action="@{/updateUser}" th:object="${user}" method="post">
-                    <input type="submit" value="Edit"/> </form> </td>
-                <td> <form
-                       th:action="@{/deleteUser}" th:object="${user}" method="get">
-                    <input type="submit" value="Delete"/> </form> </td>
+                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
                 </tr>
-            <tr> <form th:action="@{/users}" th:object="${user}" method="post">
-                <input type="submit" value="Add"/>
-                <td ${user.id}></td>
-                <td> <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name"></td>
-                <td> <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name"></td>
-                <td> <input type="text" th:field="*{phoneNumber}" id="phoneNumber" placeholder="Phone Number"></td>
-                <td> <input type="text" th:field="*{email}" id="email" placeholder="Email"></td> </form>
-            </tr>
+
         </table>
-    </div>
 </div>
 </body>
 </html>
