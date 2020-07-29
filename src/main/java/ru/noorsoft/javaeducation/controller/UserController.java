@@ -36,7 +36,8 @@ public class UserController {
             return "users";
         }
         user = new User(firstName.substring(0,1).toUpperCase()+firstName.substring(1),
-                lastName.substring(0,1).toUpperCase()+lastName.substring(1), phoneNumber, email);
+                lastName.substring(0,1).toUpperCase()+lastName.substring(1),
+                phoneNumber.substring(0,1)+" ("+phoneNumber.substring(1,4)+") "+phoneNumber.substring(4,7)+" "+phoneNumber.substring(7,9)+" "+phoneNumber.substring(9), email);
         userRepository.save(user);
         return "redirect:/";
     }
