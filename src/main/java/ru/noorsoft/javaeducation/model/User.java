@@ -1,7 +1,5 @@
 package ru.noorsoft.javaeducation.model;
 
-import com.sun.istack.NotNull;
-
 import javax.persistence.*;
 
 @Entity
@@ -13,25 +11,18 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @NotNull
     @Column(name = "firstName")
     private String firstName;
 
-    @NotNull
     @Column(name = "lastName")
     private String lastName;
 
-    @NotNull
     @Column(name = "PhoneNumber")
     private String phoneNumber;
 
-    @NotNull
     @Column(name = "Email")
     private String email;
 
-    protected User(){
-
-    }
     public User(String firstName, String lastName, String phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -39,6 +30,9 @@ public class User {
         this.email = email;
     }
 
+    public User(){
+
+    }
 
     public Long getId() {
         return id;
