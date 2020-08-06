@@ -72,7 +72,7 @@
     <td th:text="${user.email}" class="editable" contenteditable="false" ></td>
     <td>
         <button type="button" id="edit_button" onclick="Edit()">Edit</button>
-        <button type="button" id="save_button" style="display: none" onclick="Save()">Save</button>
+       <button type="submit" id="save_button" style="display: none" onclick="Save()">Save</button>
    </td>
                 <script type="text/javascript">
                     $("#edit_button").click(function () {
@@ -107,7 +107,7 @@
                             if (!re1.test(edit2)) {
                                 alert('Type correct Last Name!');
                             } else{
-                                if (!re2.test(edit3)) {
+                                if ((!re2.test(edit3)) || (edit3.length!==17)) {
                                     alert('Type correct Phone Number!');
                                 } else {
                                     if (!re3.test(edit4)) {
@@ -116,7 +116,7 @@
                                         if (edit1.length===0 || edit2.length===0 || edit1.length===0 || edit4.length===0){
                                             alert('Fields cannot be empty!');
                                         } else {
-                                            if (edit1.length>20 || edit2.length>20 || edit3.length>17 || edit4.length>64){
+                                            if (edit1.length>20 || edit2.length>20 || edit4.length>64){
                                                 alert('Fields cannot be too long!');
                                             } else {
                                                 $("#save_button").hide();
