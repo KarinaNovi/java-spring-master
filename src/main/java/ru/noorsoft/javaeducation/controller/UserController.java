@@ -50,19 +50,16 @@ public class UserController {
         return "redirect:/users";
     }
 
-//    // тут инфа из строки таблицы с id вставляется в инпут и редактируется там
-//    @RequestMapping(value="/edit", method= RequestMethod.POST)
-//    public String updateUser(@RequestParam("id") Long id, @ModelAttribute("user") User user, Model model) {
-//        Optional<User> userToUpdate = userService.findById(id);
-//        model.addAttribute("addUser", user);
-//        user.setFirstName(user.getFirstName() != null ? user.getFirstName() : userToUpdate.get().getFirstName());
-//        user.setLastName(user.getLastName() != null ? user.getLastName() : userToUpdate.get().getLastName());
-//        user.setPhoneNumber(user.getPhoneNumber() != null ? user.getPhoneNumber() : userToUpdate.get().getPhoneNumber());
-//        user.setEmail(user.getEmail() != null ? user.getEmail() : userToUpdate.get().getEmail());
-//        userService.save(user);
-//        model.addAttribute("user", userService.findById(user.getId()));
-//        return "redirect:/users";
-//    }
+    // тут информация из строки таблицы с id вставляется в инпут и редактируется там
+    @RequestMapping(value="/edit", method= RequestMethod.POST)
+    public String updateUser(@RequestParam("id") Long id, Model model) {
+        Optional<User> user = userService.findById(id);
+        model.addAttribute("addUser", user);
+        //update user to database
+        user.ifPresent(userService::save);
+        userService.delete(id);
+        return "users";
+    }
     // а тут по id удаляется user
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deleteUser(@RequestParam("id") Long id) {
