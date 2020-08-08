@@ -54,9 +54,17 @@ public class UserController {
     @RequestMapping(value="/edit", method= RequestMethod.POST)
     public String updateUser(@RequestParam("id") Long id, Model model) {
         Optional<User> user = userService.findById(id);
+        if (user.isPresent()){
+            String phoneNumber = user.get().getPhoneNumber().replaceAll("[-()\\s]", "");
+            String firstName = user.get().getFirstName();
+            String lastName = user.get().getLastName();
+            String email = user.get().getEmail();
+            user = Optional.of(new User(firstName.substring(0, 1).toUpperCase() + firstName.substring(1),
+                    lastName.substring(0, 1).toUpperCase() + lastName.substring(1),
+                    phoneNumber, email));
+        }
         model.addAttribute("addUser", user);
         //update user to database
-        user.ifPresent(userService::save);
         userService.delete(id);
         return "users";
     }
